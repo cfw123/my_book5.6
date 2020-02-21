@@ -83,7 +83,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+//        return dump($id);
+
+        $category = Category::find($id);
+        $categories = Category::where('parent_id','0')->get();
+
+        return view('admin.category.edit',compact(['category','categories']));
     }
 
     /**
@@ -95,7 +100,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return dump($request);
+        $category = Category::find($id);
+
+        $name = $request->input('name', '');
+        $category_no = $request->input('category_no', '');
+        $parent_id = $request->input('parent_id', '');
+//        $preview = $request->input('preview', '');
+
+        $category->name = $name;
+        $category->category_no = $category_no;
+        if($parent_id != '') {
+            $category->parent_id = $parent_id;
+        }
+//        $category->preview = $preview;
+        $category->save();
+
+        $m3_result = new M3Result;
+        $m3_result->status = 0;
+        $m3_result->msg = '添加成功';
+
+        return $m3_result->toJson();
     }
 
     /**

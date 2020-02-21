@@ -1,0 +1,2 @@
+[Thu Feb 20 16:42:57.683277 2020] [php7:error] [pid 2300:tid 1748] [client 127.0.0.1:1660] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in G:\\www\\myproject\\www.edu.hd\\config\\view.php on line 31
+[Thu Feb 20 16:43:01.600501 2020] [php7:error] [pid 2300:tid 1744] [client 127.0.0.1:1661] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in G:\\www\\myproject\\www.edu.hd\\vendor\\barryvdh\\laravel-debugbar\\src\\ServiceProvider.php on line 11

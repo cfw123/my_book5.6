@@ -34,7 +34,8 @@
                             @endif</td>
                         <td class="td-manage">
                             {{--<a title="编辑" href="javascript:;" onclick="category_edit('编辑类别','/admin/category_edit?id={{$category->id}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>--}}
-                            <a title="编辑" href="javascript:;" onclick="category_edit('编辑类别','admin/category/{{$category->id}}/edit')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                            {{--<a title="编辑" href="javascript:;" onclick="category_edit('编辑类别','/admin/category/{{$category->id}}/edit')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>--}}
+                            <a title="编辑" href="javascript:;" onclick="category_edit('编辑类别','{{route('admin.category.edit',$category->id)}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                             <a title="删除" href="javascript:;" onclick='category_del("{{$category->name}}", "{{$category->id}}")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
                         </td>
                     </tr>
@@ -69,9 +70,8 @@
             layer.full(index);
         }
 
-        function category_edit(url) {
-                alert(url);
-//            alert()
+        function category_edit(title,url) {
+            alert(url);
             var index = layer.open({
                 type: 2,
                 title: title,
