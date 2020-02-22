@@ -10,8 +10,8 @@
     <script type="text/javascript" src="{{ st('admin') }}/lib/html5shiv.js"></script>
     <script type="text/javascript" src="{{ st('admin') }}/lib/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="{{ st('admin') }}/static/h-ui/css/H-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ st('admin') }}/static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/static/h-ui/css/H-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/static/h-ui.admin/css/H-ui.admin.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/lib/Hui-iconfont/1.0.8/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/static/h-ui.admin/skin/default/skin.css" id="skin"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/static/h-ui.admin/css/style.css"/>

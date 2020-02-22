@@ -100,7 +100,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return dump($request);
         $category = Category::find($id);
 
         $name = $request->input('name', '');

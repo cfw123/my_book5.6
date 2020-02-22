@@ -71,7 +71,6 @@
         }
 
         function category_edit(title,url) {
-            alert(url);
             var index = layer.open({
                 type: 2,
                 title: title,
