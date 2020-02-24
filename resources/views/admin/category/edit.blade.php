@@ -73,7 +73,7 @@
                         name: $('input[name=name]').val(),
                         category_no: $('input[name=category_no]').val(),
                         parent_id: $('select[name=parent_id] option:selected').val(),
-                        preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
+                        // preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
                         _token: "{{csrf_token()}}"
                     },
                     success: function(data) {
