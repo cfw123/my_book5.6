@@ -26,41 +26,41 @@
     "use strict";
 
     /*
-     Usage Note:
-     -----------
-     Do not use both ajaxSubmit and ajaxForm on the same form.  These
-     functions are mutually exclusive.  Use ajaxSubmit if you want
-     to bind your own submit handler to the form.  For example,
+        Usage Note:
+        -----------
+        Do not use both ajaxSubmit and ajaxForm on the same form.  These
+        functions are mutually exclusive.  Use ajaxSubmit if you want
+        to bind your own submit handler to the form.  For example,
 
-     $(document).ready(function() {
-     $('#myForm').on('submit', function(e) {
-     e.preventDefault(); // <-- important
-     $(this).ajaxSubmit({
-     target: '#output'
-     });
-     });
-     });
+        $(document).ready(function() {
+            $('#myForm').on('submit', function(e) {
+                e.preventDefault(); // <-- important
+                $(this).ajaxSubmit({
+                    target: '#output'
+                });
+            });
+        });
 
-     Use ajaxForm when you want the plugin to manage all the event binding
-     for you.  For example,
+        Use ajaxForm when you want the plugin to manage all the event binding
+        for you.  For example,
 
-     $(document).ready(function() {
-     $('#myForm').ajaxForm({
-     target: '#output'
-     });
-     });
+        $(document).ready(function() {
+            $('#myForm').ajaxForm({
+                target: '#output'
+            });
+        });
 
-     You can also use ajaxForm with delegation (requires jQuery v1.7+), so the
-     form does not have to exist when you invoke ajaxForm:
+        You can also use ajaxForm with delegation (requires jQuery v1.7+), so the
+        form does not have to exist when you invoke ajaxForm:
 
-     $('#myForm').ajaxForm({
-     delegation: true,
-     target: '#output'
-     });
+        $('#myForm').ajaxForm({
+            delegation: true,
+            target: '#output'
+        });
 
-     When using ajaxForm, the ajaxSubmit function will be invoked for you
-     at the appropriate time.
-     */
+        When using ajaxForm, the ajaxSubmit function will be invoked for you
+        at the appropriate time.
+    */
 
     /**
      * Feature detection
@@ -790,20 +790,20 @@
             }
 
             var toXml = $.parseXML || function(s, doc) { // use parseXML if available (jQuery 1.5+)
-                    if (window.ActiveXObject) {
-                        doc = new ActiveXObject('Microsoft.XMLDOM');
-                        doc.async = 'false';
-                        doc.loadXML(s);
-                    }
-                    else {
-                        doc = (new DOMParser()).parseFromString(s, 'text/xml');
-                    }
-                    return (doc && doc.documentElement && doc.documentElement.nodeName != 'parsererror') ? doc : null;
-                };
+                if (window.ActiveXObject) {
+                    doc = new ActiveXObject('Microsoft.XMLDOM');
+                    doc.async = 'false';
+                    doc.loadXML(s);
+                }
+                else {
+                    doc = (new DOMParser()).parseFromString(s, 'text/xml');
+                }
+                return (doc && doc.documentElement && doc.documentElement.nodeName != 'parsererror') ? doc : null;
+            };
             var parseJSON = $.parseJSON || function(s) {
-                    /*jslint evil:true */
-                    return window['eval']('(' + s + ')');
-                };
+                /*jslint evil:true */
+                return window['eval']('(' + s + ')');
+            };
 
             var httpData = function( xhr, type, s ) { // mostly lifted from jq1.4.4
 

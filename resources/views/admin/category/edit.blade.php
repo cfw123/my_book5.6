@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <form action="" method="put" class="form form-horizontal" id="form-category-edit">
+    <form action="" method="" class="form form-horizontal" id="form-category-edit">
         {{ csrf_field() }}
         <div class="row cl">
             <label class="form-label col-sm-3"><span class="c-red">*</span>名称：</label>
@@ -35,7 +35,7 @@
         </div>
         <div class="row cl">
             <label class="form-label col-sm-3">预览图：</label>
-            <div class="formControls col-sm-5">
+            <div class="formControls col-5">
                 @if($category->preview != null)
                     <img id="preview_id" src="{{$category->preview}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />
                 @else
@@ -53,6 +53,9 @@
 @endsection
 
 @section('js')
+
+    <script type="text/javascript" src="{{ asset('admin') }}/js/uploadFile.js"></script>
+
     <script type="text/javascript">
         $("#form-category-edit").Validform({
             tiptype:2,
@@ -62,11 +65,11 @@
                 // parent.$('.btn-refresh').click();
                 // parent.layer.close(index);
                 $('#form-category-edit').ajaxSubmit({
-//                    type: 'post', // 提交方式 get/post
-                    type: 'put', // 提交方式 get/post
-//                    url: '/admin/service/category/edit', // 需要提交的 url
+                   type: 'post', // 提交方式 get/post
+//                     type: 'put', // 提交方式 get/post
+                   url: '/admin/category/edit', // 需要提交的 url
                     {{--url: "{{route('admin.category.update)}}", // 需要提交的 url--}}
-                    url: '{{url('admin/category/'.$category->id)}}', // 需要提交的 url
+{{--                    url: '{{url('admin/category/'.$category->id)}}', // 需要提交的 url--}}
                     dataType: 'json',
                     data: {
                         id: "{{$category->id}}",
@@ -74,6 +77,7 @@
                         category_no: $('input[name=category_no]').val(),
                         parent_id: $('select[name=parent_id] option:selected').val(),
                         // preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
+                        preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
                         _token: "{{csrf_token()}}"
                     },
                     success: function(data) {

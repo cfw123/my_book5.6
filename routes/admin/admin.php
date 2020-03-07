@@ -17,4 +17,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['che
 
     // 分类管理
     Route::resource('category','CategoryController',['as' => 'admin']);
+
+    Route::post('category/edit', 'CategoryController@categoryEdit');
 });
+Route::post('service/upload/{type}', 'Service\UploadController@uploadFile')->name('service.upload');

@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $name = $request->input('name', '');
         $category_no = $request->input('category_no', '');
         $parent_id = $request->input('parent_id', '');
-//        $preview = $request->input('preview', '');
+        $preview = $request->input('preview', '');
 
         $category = new Category;
         $category->name = $name;
@@ -101,28 +101,27 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
 
-//        return dump($request->all());
-        $category = Category::find($id);
-
-
-        $name = $request->input('name', '');
-        $category_no = $request->input('category_no', '');
-        $parent_id = $request->input('parent_id', '');
+//        $category = Category::find($id);
+//
+//
+//        $name = $request->input('name', '');
+//        $category_no = $request->input('category_no', '');
+//        $parent_id = $request->input('parent_id', '');
 //        $preview = $request->input('preview', '');
-
-        $category->name = $name;
-        $category->category_no = $category_no;
-        if($parent_id != '') {
-            $category->parent_id = $parent_id;
-        }
+//
+//        $category->name = $name;
+//        $category->category_no = $category_no;
+//        if($parent_id != '') {
+//            $category->parent_id = $parent_id;
+//        }
 //        $category->preview = $preview;
-        $category->save();
-
-        $m3_result = new M3Result;
-        $m3_result->status = 0;
-        $m3_result->msg = '添加成功';
-
-        return $m3_result->toJson();
+//        $category->save();
+//
+//        $m3_result = new M3Result;
+//        $m3_result->status = 0;
+//        $m3_result->msg = '添加成功';
+//
+//        return $m3_result->toJson();
     }
 
     /**
@@ -139,6 +138,31 @@ class CategoryController extends Controller
         $m3_result = new M3Result;
         $m3_result->status = 0;
         $m3_result->message = '删除成功';
+
+        return $m3_result->toJson();
+    }
+
+    public function categoryEdit(Request $request) {
+        $id = $request->input('id', '');
+        $category = Category::find($id);
+
+        $name = $request->input('name', '');
+        $category_no = $request->input('category_no', '');
+        $parent_id = $request->input('parent_id', '');
+        $preview = $request->input('preview', '');
+
+//        dd($request->all());
+        $category->name = $name;
+        $category->category_no = $category_no;
+        if($parent_id != '') {
+            $category->parent_id = $parent_id;
+        }
+        $category->preview = $preview;
+        $category->save();
+
+        $m3_result = new M3Result;
+        $m3_result->status = 0;
+        $m3_result->message = '添加成功';
 
         return $m3_result->toJson();
     }

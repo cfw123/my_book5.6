@@ -23,6 +23,8 @@ class M3Result {
     public function toJson()
     {
         return json_encode($this, JSON_UNESCAPED_UNICODE);
+//        return json_encode($this->toArray(), JSON_UNESCAPED_UNICODE);
+//        return response()->json($this)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 
 }
