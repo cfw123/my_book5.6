@@ -1,0 +1,143 @@
+@extends('layout.main')
+
+@section('content')
+    <form action="" method="" class="form form-horizontal" id="form-category-edit">
+        {{ csrf_field() }}
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>名称：</label>
+            <div class="formControls col-sm-5">
+                <input type="text" class="input-text" value="{{$product->name}}" placeholder="" name="name" datatype="*" nullmsg="名称不能为空">
+            </div>
+            <div class="col-sm-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>简介：</label>
+            <div class="formControls col-sm-5">
+                <input type="text" class="input-text" value="{{$product->summary}}" placeholder="" name="summary"  datatype="*" nullmsg="简介不能为空">
+            </div>
+            <div class="col-sm-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>价格：</label>
+            <div class="formControls col-sm-5">
+                <input type="number" class="input-text" value="{{$product->price}}" placeholder="" name="price"  datatype="*" nullmsg="价格不能为空">
+            </div>
+            <div class="col-sm-4"> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-sm-2">类别：</label>
+            <div class="formControls col-sm-5"> <span class="select-box" style="width:150px;">
+      <select class="select" name="category_id" size="1">
+        @foreach($categories as $category)
+              <option value="{{$category->id}}">{{$category->name}}</option>
+          @endforeach
+      </select>
+      </span>
+            </div>
+        </div>
+        <div class="row cl">
+            {{--<label class="form-label col-sm-2">预览图：</label>--}}
+            {{--<div class="formControls col-sm-5">--}}
+                {{--<img id="preview_id" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />--}}
+                {{--<input type="file" name="file" id="input_id" style="display: none;" onchange="return uploadImageToServer('input_id','images', 'preview_id');" />--}}
+            {{--</div>--}}
+            <label class="form-label col-sm-2">预览图：</label>
+            <div class="formControls col-sm-5">
+                @if($product->preview != null)
+                    <img id="preview_id" src="{{$product->preview}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />
+                @else
+                    <img id="preview_id" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />
+                @endif
+                <input type="file" name="file" id="input_id" style="display: none;" onchange="return uploadImageToServer('input_id','images', 'preview_id');" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-sm-2">详细内容：</label>
+            <div class="formControls col-sm-8">
+                <script id="editor" type="text/plain" style="width:100%; height:400px;">
+                    {!! $pdt_content->content !!}
+                </script>
+            </div>
+        </div>
+            <div class="row cl">
+                <label class="form-label col-sm-2">产品图片：</label>
+                <div class="formControls col-sm-8">
+                    <img id="preview_id1" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id1').click()" />
+                    <input type="file" name="file" id="input_id1" style="display: none;" onchange="return uploadImageToServer('input_id1','images', 'preview_id1');" />
+                    <img id="preview_id2" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id2').click()" />
+                    <input type="file" name="file" id="input_id2" style="display: none;" onchange="return uploadImageToServer('input_id2','images', 'preview_id2');" />
+                    <img id="preview_id3" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id3').click()" />
+                    <input type="file" name="file" id="input_id3" style="display: none;" onchange="return uploadImageToServer('input_id3','images', 'preview_id3');" />
+                    <img id="preview_id4" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id4').click()" />
+                    <input type="file" name="file" id="input_id4" style="display: none;" onchange="return uploadImageToServer('input_id4','images', 'preview_id4');" />
+                    <img id="preview_id5" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id5').click()" />
+                    <input type="file" name="file" id="input_id5" style="display: none;" onchange="return uploadImageToServer('input_id5','images', 'preview_id5');" />
+                </div>
+            </div>
+                <div class="row cl">
+                    <div class="col-sm-8 col-sm-offset-2">
+                    <input style="margin: 20px 0; width: 200px;" class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                </div>
+            </div>
+    </form>
+@endsection
+
+@section('js')
+
+
+
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        ue.execCommand( "getlocaldata" );
+        $("#form-category-edit").Validform({
+            tiptype:2,
+            callback:function(form){
+                // form[0].submit();
+                // var index = parent.layer.getFrameIndex(window.name);
+                // parent.$('.btn-refresh').click();
+                // parent.layer.close(index);
+                $('#form-category-edit').ajaxSubmit({
+                    type: 'post', // 提交方式 get/post
+//                     type: 'put', // 提交方式 get/post
+                    url: '/admin/category/edit', // 需要提交的 url
+                    {{--url: "{{route('admin.category.update)}}", // 需要提交的 url--}}
+                            {{--                    url: '{{url('admin/category/'.$category->id)}}', // 需要提交的 url--}}
+                    dataType: 'json',
+                    data: {
+                        id: "{{$category->id}}",
+                        name: $('input[name=name]').val(),
+                        category_no: $('input[name=category_no]').val(),
+                        parent_id: $('select[name=parent_id] option:selected').val(),
+                        // preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
+                        preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
+                        _token: "{{csrf_token()}}"
+                    },
+                    success: function(data) {
+                        if(data == null) {
+                            layer.msg('服务端错误', {icon:2, time:2000});
+                            return;
+                        }
+                        if(data.status != 0) {
+                            layer.msg(data.message, {icon:2, time:2000});
+                            return;
+                        }
+
+                        layer.msg(data.message, {icon:1, time:2000});
+                        parent.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr);
+                        console.log(status);
+                        console.log(error);
+                        layer.msg('ajax error', {icon:2, time:2000});
+                    },
+                    beforeSend: function(xhr){
+                        layer.load(0, {shade: false});
+                    },
+                });
+
+                return false;
+            }
+        });
+    </script>
+@endsection

@@ -54,7 +54,6 @@
 
 @section('js')
 
-    <script type="text/javascript" src="{{ asset('admin') }}/js/uploadFile.js"></script>
 
     <script type="text/javascript">
         $("#form-category-edit").Validform({

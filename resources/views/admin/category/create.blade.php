@@ -33,8 +33,12 @@
             <div class="row cl">
                 <label class="form-label col-sm-3">预览图：</label>
                 <div class="formControls col-sm-5">
+                    {{--<img id="preview_id" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />--}}
                     <img id="preview_id" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />
+
+                    {{--<input type="file" name="file" id="input_id" style="display: none;" onchange="return uploadImageToServer('input_id','images', 'preview_id');" />--}}
                     <input type="file" name="file" id="input_id" style="display: none;" onchange="return uploadImageToServer('input_id','images', 'preview_id');" />
+
                 </div>
             </div>
             <div class="row cl">

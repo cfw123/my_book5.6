@@ -52,7 +52,7 @@ class CategoryController extends Controller
         $category              = new Category;
         $category->name        = $name;
         $category->category_no = $category_no;
-//        $category->preview = $preview;
+        $category->preview = $preview;
         if ($parent_id != '') {
             $category->parent_id = $parent_id;
         }
