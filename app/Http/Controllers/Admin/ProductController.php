@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Entity\OrderItem;
+use App\Models\Entity\Category;
+use App\Models\Entity\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class OrderItemController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,12 @@ class OrderItemController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        foreach ($products as $product) {
+            $product->category = Category::find($product->category_id);
+        }
+
+        return view('admin.product.index')->with('products', $products);
     }
 
     /**
@@ -41,10 +48,10 @@ class OrderItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Entity\OrderItem  $orderItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderItem $orderItem)
+    public function show($id)
     {
         //
     }
@@ -52,10 +59,10 @@ class OrderItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Entity\OrderItem  $orderItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderItem $orderItem)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +71,10 @@ class OrderItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Entity\OrderItem  $orderItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderItem $orderItem)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +82,10 @@ class OrderItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Entity\OrderItem  $orderItem
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderItem $orderItem)
+    public function destroy($id)
     {
         //
     }

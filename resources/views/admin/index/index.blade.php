@@ -60,6 +60,7 @@
             <dd>
                 <ul>
                     <li><a data-href="{{ route('admin.category.index') }}"  data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+                    <li><a data-href="{{ route('admin.product.index') }}"  data-title="产品管理" href="javascript:void(0)">分类管理</a></li>
                     <li><a _href="/admin/product" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
                 </ul>
             </dd>
