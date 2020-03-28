@@ -77,7 +77,14 @@
 
                 <img id='preview_id{{$loop->iteration}}' src="{{$pdt_image->image_path}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;"   onclick="$('#input_id{{$loop->iteration}}').click()"  />
                 <input type="file" name="file" id="input_id{{$loop->iteration}}" style="display: none;" onchange="return uploadImageToServer('input_id{{$loop->iteration}}','images', 'preview_id{{$loop->iteration}}');"  />
-
+                        @if ($loop->last)
+                           @if( 5>$loop->count)
+                                @for ($i = $loop->count+1; $i < 6; $i++)
+                                <img id='preview_id{{$i}}' src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;"   onclick="$('#input_id{{$i}}').click()"  />
+                                <input type="file" name="file" id="input_id{{$i}}" style="display: none;" onchange="return uploadImageToServer('input_id{{$i}}','images', 'preview_id{{$i}}');"  />
+                                @endfor
+                           @endif
+                        @endif
                     @empty
                 <img id="preview_id1" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id1').click()" />
                 <input type="file" name="file" id="input_id1" style="display: none;" onchange="return uploadImageToServer('input_id1','images', 'preview_id1');" />
