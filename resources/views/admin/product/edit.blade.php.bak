@@ -61,7 +61,7 @@
         </div>
             <div class="row cl">
                 <label class="form-label col-sm-2">产品图片：</label>
-                <div class="formControls col-sm-8 pdt_img">
+                <div class="formControls col-sm-8">
                     {{--@if($category->preview != null)--}}
                 {{--<img id="preview_id" src="{{$category->preview}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id').click()" />--}}
                     {{--@else--}}
@@ -70,14 +70,10 @@
                 {{--<input type="file" name="file" id="input_id" style="display: none;" onchange="return uploadImageToServer('input_id','images', 'preview_id');" />--}}
 
 
-
-
                     @forelse($pdt_images as $pdt_image)
-
-
-                <img id='preview_id{{$loop->iteration}}' src="{{$pdt_image->image_path}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;"   onclick="$('#input_id{{$loop->iteration}}').click()"  />
-                <input type="file" name="file" id="input_id{{$loop->iteration}}" style="display: none;" onchange="return uploadImageToServer('input_id{{$loop->iteration}}','images', 'preview_id{{$loop->iteration}}');"  />
-
+                // <img id="preview_id1" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#preview_id1').click()" />
+                <img id="preview_id1" src="{{$pdt_image->image_path}}" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#preview_id1').click()" />
+                <input type="file" name="file" id="preview_id1" style="display: none;" onchange="return uploadImageToServer('preview_id1','images', 'preview_id1');" />
                     @empty
                 <img id="preview_id1" src="/admin/images/icon-add.png" style="border: 1px solid #B8B9B9; width: 100px; height: 100px;" onclick="$('#input_id1').click()" />
                 <input type="file" name="file" id="input_id1" style="display: none;" onchange="return uploadImageToServer('input_id1','images', 'preview_id1');" />
@@ -160,28 +156,5 @@
                 return false;
             }
         });
-
-
-
-          /*  $('.pdt_img>img').each(function(){
-                $(this).on("click",function(){
-                    var preview_id = $(this).attr('id');
-                    var input_id = $(this).next().attr('id');
-
-
-                    $('#'+input_id).attr('onchange',function(){
-                        console.log( preview_id );
-                        console.log(input_id);
-                            return uploadImageToServer(input_id,'images',preview_id);
-                        });
-
-
-                });
-
-            });*/
-
-
-
-
     </script>
 @endsection

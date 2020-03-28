@@ -151,7 +151,7 @@ class ProductController extends Controller
         $pdt_images =PdtImages::where('product_id', $id)->get();
         $pdt_content = PdtContent::where('product_id', $id)->first();
 
-
+//dd($pdt_images);
         return view('admin.product.edit', compact([ 'category','categories','product', 'pdt_images','pdt_content']));
 
     }
