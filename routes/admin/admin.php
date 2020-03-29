@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['che
     // 产品管理
     Route::resource('product','ProductController',['as' => 'admin']);
 
+    Route::post('product/edit', 'ProductController@productEdit');
+
 
 });
 Route::post('service/upload/{type}', 'Service\UploadController@uploadFile')->name('service.upload');

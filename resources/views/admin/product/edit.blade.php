@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <form action="" method="" class="form form-horizontal" id="form-category-edit">
+    <form action="" method="" class="form form-horizontal" id="form-product-edit">
         {{ csrf_field() }}
         <div class="row cl">
             <label class="form-label col-sm-2"><span class="c-red">*</span>名称：</label>
@@ -167,6 +167,63 @@
                 return false;
             }
         });
+
+        //产品编辑
+        $("#form-product-edit").Validform({
+                tiptype:2,
+                callback:function(form){
+                    // form[0].submit();
+                    // var index = parent.layer.getFrameIndex(window.name);
+                    // parent.$('.btn-refresh').click();
+                    // parent.layer.close(index);
+                    $('#form-product-edit').ajaxSubmit({
+                        type: 'post', // 提交方式 get/post
+                        url: '/admin/product/edit', // 需要提交的 url
+                        {{--url: "{{route('admin.category.update)}}", // 需要提交的 url--}}
+                                {{--                    url: '{{url('admin/category/'.$category->id)}}', // 需要提交的 url--}}
+                        dataType: 'json',
+                        data: {
+                            id:"{{$product->id}}",
+                            name:$('input[name=name]').val(),
+                            summary:$('input[name=summary]').val(),
+                            price:$('input[name=price]').val(),
+                            category_id: $('select[name=category_id] option:selected').val(),
+                            preview: ($('#preview_id').attr('src')!='/admin/images/icon-add.png'?$('#preview_id').attr('src'):''),
+                            content: ue.getContent(),
+                            preview1: ($('#preview_id1').attr('src')!='/admin/images/icon-add.png'?$('#preview_id1').attr('src'):''),
+                            preview2: ($('#preview_id2').attr('src')!='/admin/images/icon-add.png'?$('#preview_id2').attr('src'):''),
+                            preview3: ($('#preview_id3').attr('src')!='/admin/images/icon-add.png'?$('#preview_id3').attr('src'):''),
+                            preview4: ($('#preview_id4').attr('src')!='/admin/images/icon-add.png'?$('#preview_id4').attr('src'):''),
+                            preview5: ($('#preview_id5').attr('src')!='/admin/images/icon-add.png'?$('#preview_id5').attr('src'):''),
+                            _token: "{{csrf_token()}}"
+                        },
+                        success: function(data) {
+                            if(data == null) {
+                                layer.msg('服务端错误', {icon:2, time:2000});
+                                return;
+                            }
+                            if(data.status != 0) {
+                                layer.msg(data.message, {icon:2, time:2000});
+                                return;
+                            }
+
+                            layer.msg(data.message, {icon:1, time:2000});
+                            parent.location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr);
+                            console.log(status);
+                            console.log(error);
+                            layer.msg('ajax error', {icon:2, time:2000});
+                        },
+                        beforeSend: function(xhr){
+                            layer.load(0, {shade: false});
+                        },
+                    });
+
+                    return false;
+                }
+            });
 
 
 
